@@ -1,6 +1,6 @@
 import React from "react";
 
-function ContactForm() {
+function Contactpopup() {
   const formHandle = (e) => {
     e.preventDefault();
   };
@@ -76,4 +76,4 @@ function ContactForm() {
     </div>
   );
 }
-export default ContactForm;
+export default Contactpopup;

@@ -95,3 +95,6 @@ height: 100%;
 .css-1808mag-MuiPaper-root-MuiAccordion-root::before {
     background-color: none !important;
 }
+.no-scroll {
+    overflow: hidden;
+  }

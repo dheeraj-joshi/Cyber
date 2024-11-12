@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link as ScrollLink } from "react-scroll";
 
 import {
@@ -31,11 +31,24 @@ import Accordian from "./Accordian";
 import Slider from "react-slick";
 import { value } from "./Common/Helper";
 import { Hidden } from "@mui/material";
-import ContactForm from "./Contactform";
+import Contactpopup from "./Contactpopup";
+
 
 export default function Data() {
   const [isNavbaropen, setIsNavbaropen] = useState(false);
   const [popup, setPopup] = useState(false);
+
+  useEffect(() => {
+    // Add or remove the no-scroll class when popup state changes
+    if (popup) {
+      document.body.classList.add("no-scroll");
+    } else {
+      document.body.classList.remove("no-scroll");
+    }
+
+    // Clean up the class on unmount
+    return () => document.body.classList.remove("no-scroll");
+  }, [popup]);
 
   const cardData = [
     {
@@ -84,7 +97,7 @@ export default function Data() {
     document.body.classList.remove("overflow-hidden");
   }
 
- 
+
 
   const settings = {
     dots: true,
@@ -175,107 +188,107 @@ export default function Data() {
           </div>
           {/* Navigation */}
           <nav>
-  <div className="flex flex-wrap items-center justify-between border py-4 lg:py-6 shadow-lg rounded-[20px] px-4 lg:px-6">
-    <div>
-      <img className="w-[60%] lg:w-auto" src={Logo} alt="Logo" />
-    </div>
+            <div className="flex flex-wrap items-center justify-between border py-4 lg:py-6 shadow-lg rounded-[20px] px-4 lg:px-6">
+              <div>
+                <img className="w-[60%] lg:w-auto" src={Logo} alt="Logo" />
+              </div>
 
-    {/* Overlay */}
-    {isNavbaropen && (
-      <div
-        className="fixed inset-0 bg-black bg-opacity-50 z-10"
-        onClick={() => setIsNavbaropen(false)}
-      ></div>
-    )}
+              {/* Overlay */}
+              {isNavbaropen && (
+                <div
+                  className="fixed inset-0 bg-black bg-opacity-50 z-10"
+                  onClick={() => setIsNavbaropen(false)}
+                ></div>
+              )}
 
-    <ul
-      className={`flex-col lg:flex-row items-center gap-8 bg-[white] lg:bg-transparent fixed w-full sm:w-1/2 lg:w-1/2 top-0 lg:right-0 ${isNavbaropen ? "right-0" : "-right-full"
-        } flex justify-center h-full sm:h-[100%] lg:relative transition-all duration-300 z-20`}
-    >
-      {[
-        { name: "Home", id: "home" },
-        { name: "About us", id: "aboutSection" },
-        { name: "Services", id: "services" },
-        { name: "Clients", id: "clients" },
-        { name: "Testimonials", id: "testimonials" },
-      ].map((item) => (
-        <li key={item.name}>
-          <ScrollLink
-            to={item.id}
-            smooth={true}
-            duration={1000}
-            className="font-normal text-sm lg:text-base text-black lg:text-black hover:text-[#EE0000] duration-300 cursor-pointer scroll-smooth"
-            onClick={() => setIsNavbaropen(false)}
-          >
-            {item.name}
-          </ScrollLink>
-        </li>
-      ))}
-      <ul className="md:hidden flex flex-col gap-6">
-        {["Get Started", "Contact us"].map((item) => (
-          <li key={item}>
-            <Link
-              className="text-sm lg:text-lg font-normal hover:bg-[#EE0000] duration-300 hover:text-white px-4 py-2 rounded-full border border-[#EE0000] text-black"
-              to=""
-              onClick={() => contactButton(item)}
-            >
-              {item}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </ul>
+              <ul
+                className={`flex-col lg:flex-row items-center gap-8 bg-[white] lg:bg-transparent fixed w-full sm:w-1/2 lg:w-1/2 top-0 lg:right-0 ${isNavbaropen ? "right-0" : "-right-full"
+                  } flex justify-center h-full sm:h-[100%] lg:relative transition-all duration-300 z-20`}
+              >
+                {[
+                  { name: "Home", id: "home" },
+                  { name: "About us", id: "aboutSection" },
+                  { name: "Services", id: "services" },
+                  { name: "Clients", id: "clients" },
+                  { name: "Testimonials", id: "testimonials" },
+                ].map((item) => (
+                  <li key={item.name}>
+                    <ScrollLink
+                      to={item.id}
+                      smooth={true}
+                      duration={1000}
+                      className="font-normal text-sm lg:text-base text-black lg:text-black hover:text-[#EE0000] duration-300 cursor-pointer scroll-smooth"
+                      onClick={() => setIsNavbaropen(false)}
+                    >
+                      {item.name}
+                    </ScrollLink>
+                  </li>
+                ))}
+                <ul className="md:hidden flex flex-col gap-6">
+                  {["Get Started", "Contact us"].map((item) => (
+                    <li key={item}>
+                      <Link
+                        className="text-sm lg:text-lg font-normal hover:bg-[#EE0000] duration-300 hover:text-white px-4 py-2 rounded-full border border-[#EE0000] text-black"
+                        to=""
+                        onClick={() => contactButton(item)}
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </ul>
 
-    {/* Action Buttons */}
-    <div>
-      <ul className="hidden md:flex items-center gap-2">
-        {["Get Started", "Contact us"].map((item) => (
-          <li key={item}>
-            <Link
-              className="text-sm lg:text-lg font-normal hover:bg-[#EE0000] duration-300 hover:text-white px-4 py-2 rounded-full border border-[#EE0000]"
-              to=""
-              onClick={() => contactButton(item)}
-            >
-              {item}
-            </Link>
-          </li>
-        ))}
-      </ul>
+              {/* Action Buttons */}
+              <div>
+                <ul className="hidden md:flex items-center gap-2">
+                  {["Get Started", "Contact us"].map((item) => (
+                    <li key={item}>
+                      <Link
+                        className="text-sm lg:text-lg font-normal hover:bg-[#EE0000] duration-300 hover:text-white px-4 py-2 rounded-full border border-[#EE0000]"
+                        to=""
+                        onClick={() => contactButton(item)}
+                      >
+                        {item}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
 
-      {popup && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20"
-          onClick={closePopup}
-        >
-          <div
-            className="bg-white p-4 sm:p-6 rounded-lg max-w-lg w-[90%] relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <ContactForm />
-            <button
-              className="absolute top-[-2px] z-40 right-2 text-2xl"
-              onClick={closePopup}
-            >
-              &times;
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+                {popup && (
+                  <div
+                    className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-20"
+                    onClick={closePopup}
+                  >
+                    <div
+                      className="bg-white p-4 sm:p-6 rounded-lg max-w-lg w-[90%] relative"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                   <Contactpopup/>
+                      <button
+                        className="absolute top-[-2px] z-40 right-2 text-2xl"
+                        onClick={closePopup}
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
 
-    <button className="lg:hidden" onClick={navOpen}>
-      {!isNavbaropen ? (
-        <img className="text-black w-5 h-5" src={hamburger} alt="" />
-      ) : (
-        <img
-          className="w-5 h-5 z-[400] fixed right-5 top-5"
-          src={close}
-          alt=""
-        />
-      )}
-    </button>
-  </div>
-</nav>
+              <button className="lg:hidden" onClick={navOpen}>
+                {!isNavbaropen ? (
+                  <img className="text-black w-5 h-5" src={hamburger} alt="" />
+                ) : (
+                  <img
+                    className="w-5 h-5 z-[400] fixed right-5 top-5"
+                    src={close}
+                    alt=""
+                  />
+                )}
+              </button>
+            </div>
+          </nav>
 
 
           {/* Hero Section */}
@@ -615,17 +628,17 @@ export default function Data() {
                 </div>
                 <div className="w-full sm:w-6/12 lg:w-4/12 xl:w-3/12 mt-6 px-3">
                   <div className="card2 h-[122px]">
-                    <img src={Namo} alt="Project1" />
+                    <img src={Namo} alt="Namo" />
                   </div>
                 </div>
                 <div className="w-full sm:w-6/12 lg:w-4/12 xl:w-3/12 mt-6 px-3">
                   <div className="card2 h-[122px]">
-                    <img src={Wised} alt="Project1" />
+                    <img src={Wised} alt="Wised" />
                   </div>
                 </div>
                 <div className="w-full sm:w-6/12 lg:w-4/12 xl:w-3/12 mt-6 px-3">
                   <div className="card2 h-[122px]">
-                    <img src={STSM} alt="Project1" />
+                    <img src={STSM} alt="STSM" />
                   </div>
                 </div>
               </div>

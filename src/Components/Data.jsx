@@ -16,7 +16,7 @@ import CirclePlus from "../assets/Images/svg/CirclePlus";
 import Metting from "../assets/Images/Png/Metting.png";
 import foursquare from "../assets/Images/Png/foursquare.png";
 import Discussing from "../assets/Images/Png/Discussing.png";
-import project1 from "../assets/Images/Png/project1.png";
+import Regent from "../assets/Images/Png/Regent.png";
 import Workingman from "../assets/Images/Png/Workingman.png";
 import BlackMan from "../assets/Images/Png/BlackMan.png";
 import close from "../assets/Images/Png/close.png";
@@ -306,7 +306,7 @@ export default function Data() {
       <main>
         <section className="mb-[50px]">
           <div className="container mx-auto px-3 max-w-[1360px]">
-            <div className="flex flex-col sm:flex-row flex-wrap mt-[50px] sm:mt-[100px] md:mt-[130px] lg:mt-[180px]">
+            <div className="flex flex-col sm:flex-row flex-wrap mt-[50px] sm:mt-[80px] md:mt-[80px] lg:mt-[150px]">
               {value.map((card, index) => (
                 <div
                   key={card.id}
@@ -546,7 +546,7 @@ export default function Data() {
               </div>
             </div>
 
-            <div className="flex justify-between mt-[30px] mx-[-12px]  flex-wrap flex-col sm:flex-row">
+            <div className="flex justify-between mt-[30px] sm:mt-[100px] md:mt-[100px]   mx-[-12px]  flex-wrap flex-col sm:flex-row">
               {/* {cardData.map((card) => (
                 <div
                   key={card.id}
@@ -610,7 +610,7 @@ export default function Data() {
               <div className="flex flex-wrap items-center mt-[30px] w-[90%] mx-auto justify-center">
                 <div className="w-full sm:w-6/12 lg:w-4/12 xl:w-3/12 mt-6 px-3">
                   <div className="card2 h-[122px]">
-                    <img src={project1} alt="Project1" />
+                    <img src={Regent} alt="Regent" />
                   </div>
                 </div>
                 <div className="w-full sm:w-6/12 lg:w-4/12 xl:w-3/12 mt-6 px-3">
